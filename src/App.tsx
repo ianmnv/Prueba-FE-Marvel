@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
-import "./App.css";
+import { useState, useEffect } from "react";
 import Axios from "axios";
 import md5 from "md5";
+import "./App.css";
+import MarvelLogo from "./assets/Marvel-logo.svg";
+import FavIconFilled from "./assets/favorite-ico-filled.svg";
+import FavIconOutlined from "./assets/favorite-ico-outlined.svg";
 
 function App() {
   const [heroesData, setHeroesData] = useState([]);
+  const [favoriteHeroes, setFavoriteHeroes] = useState<number>(0);
 
   useEffect(() => {
     async function fetchMarvelData(): Promise<void> {
@@ -13,7 +17,7 @@ function App() {
       const ts = new Date().getTime().toString();
       const hash = md5(ts + privateKey + publicKey);
 
-      const url = `https://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}`;
+      const url = `https://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&limit=50`;
 
       try {
         const response = await Axios.get(url);
@@ -25,9 +29,22 @@ function App() {
     fetchMarvelData();
   }, []);
 
-  console.log(heroesData);
+  return (
+    <>
+      <header className="display-flex">
+        <img src={MarvelLogo} alt="Marvel Logo" />
 
-  return <>Starters</>;
+        <button id="btn-show-fav-heroes" className="display-flex">
+          <img
+            src={FavIconFilled}
+            alt="Favorite icon"
+            className="fav-heores-ico"
+          />
+          <p id="numb-of-fav-heroes">{favoriteHeroes}</p>
+        </button>
+      </header>
+    </>
+  );
 }
 
 export default App;
