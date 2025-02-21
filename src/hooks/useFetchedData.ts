@@ -2,36 +2,7 @@ import { useEffect } from "react";
 import { useImmer } from "use-immer";
 import Axios from "axios";
 import md5 from "md5";
-
-interface Collection {
-  available: number;
-  collectionURI: string;
-  items: {}[];
-  returned: number;
-}
-
-interface MarvelData {
-  name: string;
-  description: string;
-  id: number;
-  modified: string;
-  resourceURI: string;
-  comics: Collection;
-  events: Collection;
-  series: Collection;
-  stories: Collection;
-  thumbnail: {
-    extension: string;
-    path: string;
-  };
-  urls: {}[];
-}
-
-interface FetchResult {
-  data?: MarvelData[];
-  error?: string;
-  loading: boolean;
-}
+import type { FetchResult, MarvelData } from "../index";
 
 function useMarvelData(): FetchResult {
   const [state, updateState] = useImmer<FetchResult>({
