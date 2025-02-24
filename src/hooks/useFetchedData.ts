@@ -3,8 +3,9 @@ import { useImmer } from "use-immer";
 import Axios from "axios";
 import md5 from "md5";
 import type { FetchResult, MarvelData } from "../index";
+import { isValidCache, getCache, setCache } from "../utils/cacheUtils";
 
-function useMarvelData(): FetchResult {
+export function useMarvelData(): FetchResult {
   const [state, updateState] = useImmer<FetchResult>({
     data: undefined,
     error: undefined,
@@ -13,6 +14,17 @@ function useMarvelData(): FetchResult {
 
   useEffect(() => {
     const fetchMarvelData = async () => {
+      if (isValidCache()) {
+        const cachedData = getCache();
+        if (cachedData) {
+          updateState((draft) => {
+            draft.data = cachedData;
+            draft.loading = false;
+          });
+          return;
+        }
+      }
+
       const publicKey = import.meta.env.VITE_MARVEL_PUBLIC_KEY;
       const privateKey = import.meta.env.VITE_MARVEL_PRIVATE_KEY;
       const ts = new Date().getTime().toString();
@@ -35,8 +47,10 @@ function useMarvelData(): FetchResult {
         );
 
         if (response?.data?.data?.results) {
+          const heroesData = response.data.data.results;
+          setCache(heroesData);
           updateState((draft) => {
-            draft.data = response.data.data.results;
+            draft.data = heroesData;
             draft.loading = false;
           });
         } else {
@@ -59,5 +73,3 @@ function useMarvelData(): FetchResult {
 
   return state;
 }
-
-export default useMarvelData;

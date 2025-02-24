@@ -3,7 +3,7 @@ import "./App.css";
 import MarvelLogo from "./assets/Marvel-logo.svg";
 import FavIconFilled from "./assets/favorite-ico-filled.svg";
 import FavIconOutlined from "./assets/favorite-ico-outlined.svg";
-import useMarvelData from "./hooks/useFetchedData";
+import { useMarvelData } from "./hooks/useFetchedData";
 import { StateContext } from "./StateContext";
 import type { FetchResult } from "./index";
 
