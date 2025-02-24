@@ -27,3 +27,8 @@ export interface FetchResult {
   error?: string;
   loading: boolean;
 }
+
+export interface CacheData {
+  data: MarvelData[];
+  timestamp: number;
+}
