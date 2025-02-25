@@ -6,6 +6,7 @@ import FavIconOutlined from "./assets/favorite-ico-outlined.svg";
 import { useMarvelData } from "./hooks/useFetchedData";
 import { StateContext } from "./StateContext";
 import type { FetchResult } from "./index";
+import HeroesList from "./components/HeroesList";
 
 function App() {
   const { data, error, loading }: FetchResult = useMarvelData();
@@ -25,6 +26,10 @@ function App() {
           <p id="numb-of-fav-heroes">{favHeroes}</p>
         </button>
       </header>
+
+      <main id="heroes-container">
+        <HeroesList />
+      </main>
     </StateContext.Provider>
   );
 }
