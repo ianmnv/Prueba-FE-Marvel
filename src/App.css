@@ -24,3 +24,86 @@ header {
   font-size: var(--L-text);
   color: var(--primary-color);
 }
+
+#heroes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17.25rem, 18.8rem));
+  justify-content: center;
+  justify-items: center;
+  gap: 1.6rem;
+  padding: 0 1.6rem;
+}
+
+.heroes-card {
+  width: 17.25rem;
+  height: 24.5rem;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.heroes-img {
+  width: 100%;
+  height: 19rem;
+}
+
+.heroe-info {
+  background-color: var(--secondary-color);
+  justify-content: space-between;
+  padding: 1.6rem;
+  padding-bottom: 2.4rem;
+  position: relative;
+}
+
+.heroe-color-bar {
+  height: 0.5rem;
+  width: 100%;
+  position: absolute;
+  top: -0.5rem;
+  right: 0;
+  background-color: var(--marvel-color);
+  transition: height 300ms;
+}
+
+.heroe-color-bar-cover {
+  height: 109%;
+}
+
+.heroe-info-ico {
+  width: 1.2rem;
+  height: 1.08rem;
+}
+
+.heroes-name {
+  font-size: var(--M-text);
+  font-weight: 400;
+  width: 80%;
+  color: var(--primary-color);
+}
+
+.cut-ico {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+}
+
+.heroes-name,
+.heroe-info-ico,
+.cut-ico {
+  z-index: 1;
+}
+
+@media (max-width: 392px) {
+  #heroes-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1512px) {
+  #heroes-container {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .heroes-card {
+    width: 18.8rem;
+  }
+}

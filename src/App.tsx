@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./App.css";
 import MarvelLogo from "./assets/Marvel-logo.svg";
 import FavIconFilled from "./assets/favorite-ico-filled.svg";
-import FavIconOutlined from "./assets/favorite-ico-outlined.svg";
 import { useMarvelData } from "./hooks/useFetchedData";
 import { StateContext } from "./StateContext";
 import type { FetchResult } from "./index";
@@ -21,7 +20,7 @@ function App() {
           <img
             src={FavIconFilled}
             alt="Favorite icon"
-            className="fav-heores-ico"
+            className="fav-heroes-ico"
           />
           <p id="numb-of-fav-heroes">{favHeroes}</p>
         </button>
