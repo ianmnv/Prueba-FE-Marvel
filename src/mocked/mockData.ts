@@ -1,4 +1,6 @@
-export const mockData = {
+import type { MarvelHeroesAPI } from "../index";
+
+export const mockData: { data: { data: { results: MarvelHeroesAPI[] } } } = {
   data: {
     data: {
       results: [

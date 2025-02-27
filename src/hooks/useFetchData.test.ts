@@ -41,7 +41,7 @@ describe("useMarvelData", () => {
     await act(async () => {});
 
     expect(result.current.loading).toBe(false);
-    expect(result.current.data).toEqual(mockData.data.data.results);
+    expect(result.current.heroesList).toEqual(mockData.data.data.results);
     expect(result.current.error).toBeUndefined();
   });
 
@@ -65,7 +65,7 @@ describe("useMarvelData", () => {
     expect(result.current.error).toBe(
       "Unknown Error occurred while fetching Marvel data"
     );
-    expect(result.current.data).toBeUndefined();
+    expect(result.current.heroesList).toBeUndefined();
   });
 
   it("should handle missing API keys", async () => {

@@ -3,10 +3,10 @@ import { userEvent } from "@testing-library/user-event";
 import HeroesList from "./HeroesList";
 import { StateContext } from "../StateContext";
 import { mockData } from "../mocked/mockData";
-import type { FetchResult } from "../index";
+import type { ContextData } from "../index";
 
 describe("<HeroesList/>", () => {
-  function helperRenderContext(fakeData: FetchResult) {
+  function helperRenderContext(fakeData: ContextData) {
     return render(
       <StateContext.Provider value={fakeData}>
         <HeroesList />
@@ -16,7 +16,7 @@ describe("<HeroesList/>", () => {
 
   it("should render heroe's name with truncation if needed", () => {
     helperRenderContext({
-      data: mockData.data.data.results,
+      heroesList: mockData.data.data.results,
       error: undefined,
       loading: false,
     });
@@ -40,7 +40,7 @@ describe("<HeroesList/>", () => {
 
   it("should render heroe images with correct alt text and source", () => {
     helperRenderContext({
-      data: mockData.data.data.results,
+      heroesList: mockData.data.data.results,
       error: undefined,
       loading: false,
     });
@@ -59,7 +59,7 @@ describe("<HeroesList/>", () => {
 
   it("should change background color when heroe card is hovered", async () => {
     helperRenderContext({
-      data: mockData.data.data.results,
+      heroesList: mockData.data.data.results,
       error: undefined,
       loading: false,
     });
@@ -76,7 +76,7 @@ describe("<HeroesList/>", () => {
 
   it("should render error problem", () => {
     helperRenderContext({
-      data: undefined,
+      heroesList: undefined,
       error: "Unknown Error occurred while fetching Marvel data",
       loading: false,
     });

@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { useImmer } from "use-immer";
 import Axios from "axios";
 import md5 from "md5";
-import type { FetchResult, MarvelData } from "../index";
+import type { ContextData, MarvelHeroesAPI } from "../index";
 import { isValidCache, getCache, setCache } from "../utils/cacheUtils";
 
-export function useMarvelData(): FetchResult {
-  const [state, updateState] = useImmer<FetchResult>({
-    data: undefined,
+export function useMarvelData(): ContextData {
+  const [state, updateState] = useImmer<ContextData>({
+    heroesList: undefined,
     error: undefined,
     loading: true,
   });
@@ -18,7 +18,7 @@ export function useMarvelData(): FetchResult {
         const cachedData = getCache();
         if (cachedData) {
           updateState((draft) => {
-            draft.data = cachedData;
+            draft.heroesList = cachedData;
             draft.loading = false;
           });
           return;
@@ -42,15 +42,15 @@ export function useMarvelData(): FetchResult {
       const url = `https://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&limit=50`;
 
       try {
-        const response = await Axios.get<{ data: { results: MarvelData[] } }>(
-          url
-        );
+        const response = await Axios.get<{
+          data: { results: MarvelHeroesAPI[] };
+        }>(url);
 
         if (response?.data?.data?.results) {
           const heroesData = response.data.data.results;
           setCache(heroesData);
           updateState((draft) => {
-            draft.data = heroesData;
+            draft.heroesList = heroesData;
             draft.loading = false;
           });
         } else {

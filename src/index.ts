@@ -5,7 +5,7 @@ interface Collection {
   returned: number;
 }
 
-export interface MarvelData {
+export interface MarvelHeroesAPI {
   name: string;
   description: string;
   id: number;
@@ -22,13 +22,13 @@ export interface MarvelData {
   urls: {}[];
 }
 
-export interface FetchResult {
-  data?: MarvelData[];
+export interface ContextData {
+  heroesList?: MarvelHeroesAPI[];
   error?: string;
   loading: boolean;
 }
 
 export interface CacheData {
-  data: MarvelData[];
+  heroesList: MarvelHeroesAPI[];
   timestamp: number;
 }

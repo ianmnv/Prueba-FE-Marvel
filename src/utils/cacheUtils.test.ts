@@ -21,7 +21,7 @@ describe("Cache utility functions", async () => {
 
   test("isValidCache should return false for cache older than 24h", () => {
     const expiredCache: CacheData = {
-      data: [],
+      heroesList: [],
       timestamp: new Date().getTime() - 25 * 60 * 60 * 1000,
     };
     vi.spyOn(localStorage, "getItem").mockReturnValue(

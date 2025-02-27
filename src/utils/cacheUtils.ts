@@ -1,4 +1,4 @@
-import type { CacheData, MarvelData } from "../index";
+import type { CacheData, MarvelHeroesAPI } from "../index";
 
 const CACHE_KEY = "marvel_heroes_cache";
 const CACHE_DURATION = 24 * 60 * 60 * 1000;
@@ -12,17 +12,17 @@ export function isValidCache(): boolean {
   return now - timestamp < CACHE_DURATION;
 }
 
-export function getCache(): MarvelData[] | null {
+export function getCache(): MarvelHeroesAPI[] | null {
   const cached = localStorage.getItem(CACHE_KEY);
   if (!cached) return null;
 
-  const { data } = JSON.parse(cached) as CacheData;
-  return data;
+  const { heroesList } = JSON.parse(cached) as CacheData;
+  return heroesList;
 }
 
-export function setCache(data: MarvelData[]): void {
+export function setCache(heroesList: MarvelHeroesAPI[]): void {
   const cacheData: CacheData = {
-    data,
+    heroesList,
     timestamp: new Date().getTime(),
   };
   localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));

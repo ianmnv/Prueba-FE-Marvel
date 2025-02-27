@@ -2,19 +2,23 @@ import { useContext, useState } from "react";
 import FavIconOutlined from "../assets/favorite-ico-outlined.svg";
 import CutIcon from "../assets/Cut.svg";
 import { StateContext } from "../StateContext";
-import { FetchResult } from "../index";
+import type { MarvelHeroesAPI } from "../index";
 
 export default function HeroesList() {
-  const { data, error }: FetchResult = useContext(StateContext);
+  const { heroesList, loading, error } = useContext(StateContext);
   const [hoveredHeroId, setHoveredHeroId] = useState<number | null>(null);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (error) {
     return <h1>There was a problem fetching data. {error}</h1>;
   }
 
   return (
-    <>
-      {data?.map((heroe) => {
+    <main id="heroes-container">
+      {heroesList?.map((heroe: MarvelHeroesAPI) => {
         return (
           <div
             key={heroe.id}
@@ -51,6 +55,6 @@ export default function HeroesList() {
           </div>
         );
       })}
-    </>
+    </main>
   );
 }

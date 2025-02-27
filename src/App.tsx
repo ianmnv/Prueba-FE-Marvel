@@ -4,15 +4,18 @@ import MarvelLogo from "./assets/Marvel-logo.svg";
 import FavIconFilled from "./assets/favorite-ico-filled.svg";
 import { useMarvelData } from "./hooks/useFetchedData";
 import { StateContext } from "./StateContext";
-import type { FetchResult } from "./index";
+import type { ContextData, MarvelHeroesAPI } from "./index";
 import HeroesList from "./components/HeroesList";
+import SearchBar from "./components/SearchBar";
 
 function App() {
-  const { data, error, loading }: FetchResult = useMarvelData();
-  const [favHeroes, setFavHeroes] = useState(0);
+  const { heroesList, error, loading }: ContextData = useMarvelData();
+  const [favoriteHeroesList, setFavoriteHeroesList] = useState<
+    MarvelHeroesAPI[]
+  >([]);
 
   return (
-    <StateContext.Provider value={{ data, error, loading }}>
+    <StateContext.Provider value={{ heroesList, error, loading }}>
       <header className="display-flex">
         <img src={MarvelLogo} alt="Marvel Logo" />
 
@@ -22,13 +25,12 @@ function App() {
             alt="Favorite icon"
             className="fav-heroes-ico"
           />
-          <p id="numb-of-fav-heroes">{favHeroes}</p>
+          <p id="numb-of-fav-heroes">{favoriteHeroesList.length}</p>
         </button>
       </header>
 
-      <main id="heroes-container">
-        <HeroesList />
-      </main>
+      <SearchBar />
+      <HeroesList />
     </StateContext.Provider>
   );
 }
