@@ -1,3 +1,5 @@
+import type { Dispatch, SetStateAction } from "react";
+
 interface Collection {
   available: number;
   collectionURI: string;
@@ -26,6 +28,8 @@ export interface ContextData {
   heroesList?: MarvelHeroesAPI[];
   error?: string;
   loading: boolean;
+  filteredHeroes?: MarvelHeroesAPI[];
+  setFilteredHeroes?: Dispatch<SetStateAction<MarvelHeroesAPI[] | undefined>>;
 }
 
 export interface CacheData {

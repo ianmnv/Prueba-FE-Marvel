@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import MarvelLogo from "./assets/Marvel-logo.svg";
 import FavIconFilled from "./assets/favorite-ico-filled.svg";
@@ -13,9 +13,18 @@ function App() {
   const [favoriteHeroesList, setFavoriteHeroesList] = useState<
     MarvelHeroesAPI[]
   >([]);
+  const [filteredHeroes, setFilteredHeroes] = useState<
+    MarvelHeroesAPI[] | undefined
+  >(undefined);
+
+  useEffect(() => {
+    setFilteredHeroes(heroesList);
+  }, [heroesList]);
 
   return (
-    <StateContext.Provider value={{ heroesList, error, loading }}>
+    <StateContext.Provider
+      value={{ heroesList, error, loading, filteredHeroes, setFilteredHeroes }}
+    >
       <header className="display-flex">
         <img src={MarvelLogo} alt="Marvel Logo" />
 

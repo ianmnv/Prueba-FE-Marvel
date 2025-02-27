@@ -5,4 +5,6 @@ export const StateContext = createContext<ContextData>({
   heroesList: undefined,
   error: undefined,
   loading: true,
+  filteredHeroes: undefined,
+  setFilteredHeroes: undefined,
 });

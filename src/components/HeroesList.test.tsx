@@ -5,16 +5,21 @@ import { StateContext } from "../StateContext";
 import { mockData } from "../mocked/mockData";
 import type { ContextData } from "../index";
 
-describe("<HeroesList/>", () => {
-  function helperRenderContext(fakeData: ContextData) {
-    return render(
-      <StateContext.Provider value={fakeData}>
-        <HeroesList />
-      </StateContext.Provider>
-    );
-  }
+function helperRenderContext(fakeData: ContextData) {
+  return render(
+    <StateContext.Provider
+      value={{
+        ...fakeData,
+        filteredHeroes: fakeData.heroesList,
+      }}
+    >
+      <HeroesList />
+    </StateContext.Provider>
+  );
+}
 
-  it("should render heroe's name with truncation if needed", () => {
+describe("<HeroesList/>", () => {
+  it("renders heroe's name with truncation if needed", () => {
     helperRenderContext({
       heroesList: mockData.data.data.results,
       error: undefined,
@@ -38,7 +43,7 @@ describe("<HeroesList/>", () => {
     });
   });
 
-  it("should render heroe images with correct alt text and source", () => {
+  it("renders heroe images with correct alt text and source", () => {
     helperRenderContext({
       heroesList: mockData.data.data.results,
       error: undefined,
@@ -57,7 +62,7 @@ describe("<HeroesList/>", () => {
     });
   });
 
-  it("should change background color when heroe card is hovered", async () => {
+  it("change background color when heroe card is hovered", async () => {
     helperRenderContext({
       heroesList: mockData.data.data.results,
       error: undefined,
@@ -74,7 +79,20 @@ describe("<HeroesList/>", () => {
     expect(childDivEl).toHaveClass("heroe-color-bar-cover");
   });
 
-  it("should render error problem", () => {
+  it("renders loading message", () => {
+    helperRenderContext({
+      heroesList: undefined,
+      error: undefined,
+      loading: true,
+    });
+
+    const loadingMsg = screen.getByText("Loading...");
+
+    expect(loadingMsg).toBeInTheDocument();
+    expect(loadingMsg).toBeDefined();
+  });
+
+  it("renders error problem", () => {
     helperRenderContext({
       heroesList: undefined,
       error: "Unknown Error occurred while fetching Marvel data",

@@ -5,7 +5,7 @@ import { StateContext } from "../StateContext";
 import type { MarvelHeroesAPI } from "../index";
 
 export default function HeroesList() {
-  const { heroesList, loading, error } = useContext(StateContext);
+  const { loading, error, filteredHeroes } = useContext(StateContext);
   const [hoveredHeroId, setHoveredHeroId] = useState<number | null>(null);
 
   if (loading) {
@@ -18,7 +18,7 @@ export default function HeroesList() {
 
   return (
     <main id="heroes-container">
-      {heroesList?.map((heroe: MarvelHeroesAPI) => {
+      {filteredHeroes?.map((heroe: MarvelHeroesAPI) => {
         return (
           <div
             key={heroe.id}
