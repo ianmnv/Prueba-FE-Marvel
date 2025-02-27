@@ -17,7 +17,7 @@ export default function HeroesList() {
   }
 
   return (
-    <main id="heroes-container">
+    <section id="heroes-container">
       {filteredHeroes?.map((heroe: MarvelHeroesAPI) => {
         return (
           <div
@@ -55,6 +55,6 @@ export default function HeroesList() {
           </div>
         );
       })}
-    </main>
+    </section>
   );
 }

@@ -26,12 +26,12 @@ describe("<SearchBar />", () => {
     });
 
     const altText = screen.getByAltText("search icon");
-    const numberOfHeroes = screen.getByText("3 results");
+    const numberOfHeroes = screen.getByText("3 RESULTS");
 
     expect(altText).toBeInTheDocument();
     expect(altText).toBeDefined();
 
-    expect(numberOfHeroes).toHaveTextContent("3 results");
+    expect(numberOfHeroes).toHaveTextContent("3 RESULTS");
   });
 
   it("input search flow", async () => {

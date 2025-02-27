@@ -38,8 +38,10 @@ function App() {
         </button>
       </header>
 
-      <SearchBar />
-      <HeroesList />
+      <main>
+        <SearchBar />
+        <HeroesList />
+      </main>
     </StateContext.Provider>
   );
 }

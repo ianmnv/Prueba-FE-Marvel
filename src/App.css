@@ -25,6 +25,16 @@ header {
   color: var(--primary-color);
 }
 
+main {
+  padding: 2.4rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2.4rem;
+}
+
+/* HeroesList.tsx styles */
+
 #heroes-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(17.25rem, 18.8rem));
@@ -92,9 +102,48 @@ header {
   z-index: 1;
 }
 
-@media (max-width: 392px) {
+/* SearchBar.tsx styles */
+
+#search-section {
+  padding: 1.2rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.search-div {
+  gap: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px var(--secondary-color) solid;
+  background-color: var(--primary-color);
+}
+
+#search-inp {
+  width: 100%;
+  height: 2.7rem;
+  font-size: var(--L-text);
+  font-weight: 400;
+}
+
+#search-inp:focus-visible {
+  outline: none;
+}
+
+#search-p {
+  font-size: var(--S-text);
+}
+
+/* Media queries */
+
+@media (max-width: 425px) {
   #heroes-container {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  #search-section {
+    padding: 1.2rem 4.8rem;
   }
 }
 

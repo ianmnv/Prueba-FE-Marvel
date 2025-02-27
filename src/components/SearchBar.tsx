@@ -23,17 +23,18 @@ export default function SearchBar() {
   }
 
   return (
-    <section>
-      <div>
+    <section id="search-section">
+      <div className="search-div display-flex">
         <img src={SearchIco} alt="search icon" />
         <input
           type="search"
           placeholder="SEARCH A CHARACTER..."
           onChange={(e) => setSearchTerm(e.target.value)}
           value={searchTerm}
+          id="search-inp"
         />
       </div>
-      <p>{`${filteredHeroes?.length} results`}</p>
+      <p id="search-p">{`${filteredHeroes?.length} RESULTS`}</p>
     </section>
   );
 }
