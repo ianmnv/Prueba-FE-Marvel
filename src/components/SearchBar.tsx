@@ -4,7 +4,7 @@ import { StateContext } from "../StateContext";
 import type { MarvelHeroesAPI } from "../index";
 
 export default function SearchBar() {
-  const { heroesList, loading, filteredHeroes, setFilteredHeroes } =
+  const { heroesList, filteredHeroes, setFilteredHeroes } =
     useContext(StateContext);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -17,10 +17,6 @@ export default function SearchBar() {
       );
     }
   }, [searchTerm, heroesList]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <section id="search-section">

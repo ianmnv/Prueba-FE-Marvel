@@ -14,6 +14,28 @@ header {
   background-color: var(--secondary-color);
 }
 
+.loading-bar {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  height: 0.5rem;
+  width: 0;
+  background-color: var(--marvel-color);
+}
+
+.loading-bar.animate {
+  animation: load 2.5s ease forwards;
+}
+
+@keyframes load {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 #btn-show-fav-heroes {
   gap: 0.8rem;
   padding: 0.8rem;

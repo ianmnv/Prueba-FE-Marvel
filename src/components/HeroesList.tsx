@@ -5,12 +5,8 @@ import { StateContext } from "../StateContext";
 import type { MarvelHeroesAPI } from "../index";
 
 export default function HeroesList() {
-  const { loading, error, filteredHeroes } = useContext(StateContext);
+  const { error, filteredHeroes } = useContext(StateContext);
   const [hoveredHeroId, setHoveredHeroId] = useState<number | null>(null);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   if (error) {
     return <h1>There was a problem fetching data. {error}</h1>;

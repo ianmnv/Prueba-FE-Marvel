@@ -14,10 +14,21 @@ function App() {
   >([]);
   const [filteredHeroes, setFilteredHeroes] =
     useState<typeof heroesList>(undefined);
+  const [animate, setAnimate] = useState<boolean>(false);
 
   useEffect(() => {
     setFilteredHeroes(heroesList);
+    setAnimate(true);
   }, [heroesList]);
+
+  if (loading) {
+    return (
+      <div style={{ position: "relative" }}>
+        <Header />
+        <div className={`loading-bar ${animate ? "animate" : ""}`}></div>
+      </div>
+    );
+  }
 
   return (
     <StateContext.Provider
