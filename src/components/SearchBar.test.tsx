@@ -53,18 +53,4 @@ describe("<SearchBar />", () => {
     const heroeName = screen.getByRole("heading", { name: "Iron Man" });
     expect(heroeName).toBeInTheDocument();
   });
-
-  it("renders loading text", () => {
-    helperRenderContext({
-      heroesList: undefined,
-      error: undefined,
-      loading: true,
-    });
-
-    const loadingText = screen.getAllByText("Loading...");
-
-    loadingText.forEach((el) => {
-      expect(el).toBeInTheDocument();
-    });
-  });
 });

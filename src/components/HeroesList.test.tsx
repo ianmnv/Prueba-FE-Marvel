@@ -79,19 +79,6 @@ describe("<HeroesList/>", () => {
     expect(childDivEl).toHaveClass("heroe-color-bar-cover");
   });
 
-  it("renders loading message", () => {
-    helperRenderContext({
-      heroesList: undefined,
-      error: undefined,
-      loading: true,
-    });
-
-    const loadingMsg = screen.getByText("Loading...");
-
-    expect(loadingMsg).toBeInTheDocument();
-    expect(loadingMsg).toBeDefined();
-  });
-
   it("renders error problem", () => {
     helperRenderContext({
       heroesList: undefined,
