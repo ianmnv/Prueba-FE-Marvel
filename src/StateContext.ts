@@ -7,4 +7,6 @@ export const StateContext = createContext<ContextData>({
   loading: true,
   filteredHeroes: undefined,
   setFilteredHeroes: undefined,
+  favoriteHeroesList: undefined,
+  setFavoriteHeroesList: undefined,
 });

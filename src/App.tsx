@@ -1,21 +1,19 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import MarvelLogo from "./assets/Marvel-logo.svg";
-import FavIconFilled from "./assets/favorite-ico-filled.svg";
 import { useMarvelData } from "./hooks/useFetchedData";
 import { StateContext } from "./StateContext";
-import type { ContextData, MarvelHeroesAPI } from "./index";
 import HeroesList from "./components/HeroesList";
 import SearchBar from "./components/SearchBar";
+import Header from "./components/Header";
+import type { ContextData } from "./index";
 
 function App() {
   const { heroesList, error, loading }: ContextData = useMarvelData();
   const [favoriteHeroesList, setFavoriteHeroesList] = useState<
-    MarvelHeroesAPI[]
+    typeof heroesList
   >([]);
-  const [filteredHeroes, setFilteredHeroes] = useState<
-    MarvelHeroesAPI[] | undefined
-  >(undefined);
+  const [filteredHeroes, setFilteredHeroes] =
+    useState<typeof heroesList>(undefined);
 
   useEffect(() => {
     setFilteredHeroes(heroesList);
@@ -23,20 +21,17 @@ function App() {
 
   return (
     <StateContext.Provider
-      value={{ heroesList, error, loading, filteredHeroes, setFilteredHeroes }}
+      value={{
+        heroesList,
+        error,
+        loading,
+        filteredHeroes,
+        setFilteredHeroes,
+        favoriteHeroesList,
+        setFavoriteHeroesList,
+      }}
     >
-      <header className="display-flex">
-        <img src={MarvelLogo} alt="Marvel Logo" />
-
-        <button id="btn-show-fav-heroes" className="display-flex">
-          <img
-            src={FavIconFilled}
-            alt="Favorite icon"
-            className="fav-heroes-ico"
-          />
-          <p id="numb-of-fav-heroes">{favoriteHeroesList.length}</p>
-        </button>
-      </header>
+      <Header />
 
       <main>
         <SearchBar />

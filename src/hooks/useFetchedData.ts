@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useImmer } from "use-immer";
 import Axios from "axios";
 import md5 from "md5";
-import type { ContextData, MarvelHeroesAPI } from "../index";
 import { isValidCache, getCache, setCache } from "../utils/cacheUtils";
+import type { ContextData, MarvelHeroesAPI } from "../index";
 
 export function useMarvelData(): ContextData {
   const [state, updateState] = useImmer<ContextData>({

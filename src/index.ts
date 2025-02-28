@@ -30,6 +30,10 @@ export interface ContextData {
   loading: boolean;
   filteredHeroes?: MarvelHeroesAPI[];
   setFilteredHeroes?: Dispatch<SetStateAction<MarvelHeroesAPI[] | undefined>>;
+  favoriteHeroesList?: MarvelHeroesAPI[];
+  setFavoriteHeroesList?: Dispatch<
+    SetStateAction<MarvelHeroesAPI[] | undefined>
+  >;
 }
 
 export interface CacheData {
