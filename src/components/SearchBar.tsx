@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useMemo } from "react";
 import SearchIco from "../assets/search-ico.svg";
 import { StateContext } from "../StateContext";
 import type { MarvelHeroesAPI } from "../index";
@@ -8,15 +8,17 @@ export default function SearchBar() {
     useContext(StateContext);
   const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    if (filteredHeroes && setFilteredHeroes) {
-      setFilteredHeroes(
-        heroesList?.filter((heroe: MarvelHeroesAPI) =>
-          heroe.name.toLowerCase().startsWith(searchTerm.toLowerCase())
-        )
-      );
-    }
+  const MemoizedFilteredHeroes = useMemo(() => {
+    return heroesList?.filter((hero: MarvelHeroesAPI) =>
+      hero.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+    );
   }, [searchTerm, heroesList]);
+
+  useEffect(() => {
+    if (setFilteredHeroes) {
+      setFilteredHeroes(MemoizedFilteredHeroes);
+    }
+  }, [MemoizedFilteredHeroes, setFilteredHeroes]);
 
   return (
     <section id="search-section">
