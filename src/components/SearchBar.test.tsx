@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import SearchBar from "./SearchBar";
+import HeroesList from "./HeroesList";
 import { StateContext } from "../StateContext";
 import { mockData } from "../mocked/mockData";
 import type { ContextData } from "../index";
-import HeroesList from "./HeroesList";
 
 function helperRenderContext(fakeData: ContextData) {
   return render(

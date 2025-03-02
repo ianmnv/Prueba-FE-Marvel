@@ -1,11 +1,13 @@
 import { useContext, useState } from "react";
 import FavIconOutlined from "../assets/favorite-ico-outlined.svg";
+import FavIconFilled from "../assets/favorite-ico-filled.svg";
 import CutIcon from "../assets/Cut.svg";
 import { StateContext } from "../StateContext";
 import type { MarvelHeroesAPI } from "../index";
 
 export default function HeroesList() {
-  const { error, filteredHeroes } = useContext(StateContext);
+  const { error, filteredHeroes, favoriteHeroesList, setFavoriteHeroesList } =
+    useContext(StateContext);
   const [hoveredHeroId, setHoveredHeroId] = useState<number | null>(null);
 
   if (error) {
@@ -42,9 +44,17 @@ export default function HeroesList() {
                   : heroe.name}
               </h1>
               <img
-                src={FavIconOutlined}
+                src={
+                  favoriteHeroesList?.includes(heroe)
+                    ? FavIconFilled
+                    : FavIconOutlined
+                }
                 alt="Favorite icon"
                 className="heroe-info-ico"
+                onClick={() => {
+                  if (favoriteHeroesList && setFavoriteHeroesList)
+                    setFavoriteHeroesList([...favoriteHeroesList, heroe]);
+                }}
               />
               <img src={CutIcon} alt="cut card icon" className="cut-ico" />
             </div>

@@ -27,19 +27,11 @@ header {
   animation: load 2.5s ease forwards;
 }
 
-@keyframes load {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
 #btn-show-fav-heroes {
   gap: 0.8rem;
   padding: 0.8rem;
   background-color: transparent;
+  cursor: pointer;
 }
 
 #numb-of-fav-heroes {
@@ -176,5 +168,16 @@ main {
 
   .heroes-card {
     width: 18.8rem;
+  }
+}
+
+/* KEYFRAME */
+
+@keyframes load {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
   }
 }

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { userEvent } from "@testing-library/user-event";
+import userEvent from "@testing-library/user-event";
 import HeroesList from "./HeroesList";
 import { StateContext } from "../StateContext";
 import { mockData } from "../mocked/mockData";
@@ -52,10 +52,12 @@ describe("<HeroesList/>", () => {
 
     const { results } = mockData.data.data;
     results.map((heroe) => {
-      const altHeroesText = screen.getByAltText(`heroe image of ${heroe.name}`);
+      const heroesImg = screen.getByRole("img", {
+        name: `heroe image of ${heroe.name}`,
+      });
 
-      expect(altHeroesText).toBeInTheDocument();
-      expect(altHeroesText).toHaveAttribute(
+      expect(heroesImg).toBeInTheDocument();
+      expect(heroesImg).toHaveAttribute(
         "src",
         `${heroe.thumbnail.path}/portrait_fantastic.${heroe.thumbnail.extension}`
       );

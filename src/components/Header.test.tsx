@@ -1,8 +1,10 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import Header from "./Header";
+import HeroesList from "./HeroesList";
 import { StateContext } from "../StateContext";
 import { mockData } from "../mocked/mockData";
-import { ContextData, MarvelHeroesAPI } from "../index";
+import type { ContextData, MarvelHeroesAPI } from "../index";
 
 function helperRenderContext(
   fakeData: ContextData,
@@ -13,6 +15,7 @@ function helperRenderContext(
       value={{ ...fakeData, favoriteHeroesList: favHeroes }}
     >
       <Header />
+      <HeroesList />
     </StateContext.Provider>
   );
 }
@@ -63,11 +66,33 @@ describe("<Header/>", () => {
     expect(btn).toBeInTheDocument();
   });
 
-  it("renders correctly number of favorite heroes", () => {
-    helperRenderContext({ loading: false }, mockData.data.data.results);
+  it("checks button flow displaying favorite heroes and regular list of heroes", async () => {
+    helperRenderContext(
+      { loading: false, filteredHeroes: mockData.data.data.results },
+      mockData.data.data.results.slice(0, 1)
+    );
 
-    const favfavCountElement = screen.getByText("3");
+    const btn = screen.getByRole("button");
+    const marvelLogo = screen.getByAltText("Marvel Logo");
+    const { results } = mockData.data.data;
 
-    expect(favfavCountElement).toBeInTheDocument();
+    expect(btn).toBeInTheDocument();
+
+    await userEvent.click(btn);
+
+    const heroesCards = screen.getByText("Iron Man");
+    expect(heroesCards).toBeInTheDocument();
+
+    await userEvent.click(marvelLogo);
+    results.map((heroe) => {
+      const cutName = `${
+        heroe.name.length > 10 ? `${heroe.name.slice(0, 10)}...` : heroe.name
+      }`;
+      const heroeName = screen.getByRole("heading", {
+        name: cutName,
+      });
+
+      expect(heroeName).toBeInTheDocument();
+    });
   });
 });

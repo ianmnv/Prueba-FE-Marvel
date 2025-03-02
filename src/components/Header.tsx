@@ -4,13 +4,29 @@ import { useContext } from "react";
 import { StateContext } from "../StateContext";
 
 export default function Header() {
-  const { favoriteHeroesList } = useContext(StateContext);
+  const { favoriteHeroesList, heroesList, setFilteredHeroes } =
+    useContext(StateContext);
+
+  function handleHeroesList(listOfHeroes: typeof heroesList) {
+    if (favoriteHeroesList && setFilteredHeroes) {
+      setFilteredHeroes(listOfHeroes);
+    }
+  }
 
   return (
     <header className="display-flex">
-      <img src={MarvelLogo} alt="Marvel Logo" />
+      <img
+        src={MarvelLogo}
+        alt="Marvel Logo"
+        style={{ cursor: "pointer" }}
+        onClick={() => handleHeroesList(heroesList)}
+      />
 
-      <button id="btn-show-fav-heroes" className="display-flex">
+      <button
+        id="btn-show-fav-heroes"
+        className="display-flex"
+        onClick={() => handleHeroesList(favoriteHeroesList)}
+      >
         <img
           src={FavIconFilled}
           alt="Favorite icon"
