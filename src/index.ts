@@ -4,7 +4,10 @@ import type { Updater } from "use-immer";
 interface Collection {
   available: number;
   collectionURI: string;
-  items: {}[];
+  items: {
+    name: string;
+    resourceURI: string;
+  }[];
   returned: number;
 }
 
@@ -35,6 +38,7 @@ export interface ContextData {
   setFavoriteHeroesList?: Dispatch<
     SetStateAction<MarvelHeroesAPI[] | undefined>
   >;
+  heroe?: { heroeCard: MarvelHeroesAPI | null; loadingHeroe: boolean };
   setHeroe?: Updater<{
     heroeCard: MarvelHeroesAPI | null;
     loadingHeroe: boolean;

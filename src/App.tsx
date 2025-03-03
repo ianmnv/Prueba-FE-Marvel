@@ -49,15 +49,13 @@ function App() {
         setFilteredHeroes,
         favoriteHeroesList,
         setFavoriteHeroesList,
+        heroe,
         setHeroe,
       }}
     >
       <Header />
-
-      <main>
-        <SearchBar />
-        {heroe.heroeCard !== null ? <HeroeCard /> : <HeroesList />}
-      </main>
+      {heroe.heroeCard === null ? <SearchBar /> : ""}
+      {heroe.heroeCard !== null ? <HeroeCard /> : <HeroesList />}
     </StateContext.Provider>
   );
 }

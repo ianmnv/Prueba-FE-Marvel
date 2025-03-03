@@ -39,14 +39,6 @@ header {
   color: var(--primary-color);
 }
 
-main {
-  padding: 2.4rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 2.4rem;
-}
-
 /* HeroesList.tsx styles */
 
 #heroes-container {
@@ -56,6 +48,7 @@ main {
   justify-items: center;
   gap: 1.6rem;
   padding: 0 1.6rem;
+  margin: 2.4rem 0;
 }
 
 .heroes-card {
@@ -121,6 +114,7 @@ main {
 /* SearchBar.tsx styles */
 
 #search-section {
+  margin-top: 2.4rem;
   padding: 1.2rem 1.6rem;
   display: flex;
   flex-direction: column;

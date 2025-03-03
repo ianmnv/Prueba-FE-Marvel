@@ -9,5 +9,6 @@ export const StateContext = createContext<ContextData>({
   setFilteredHeroes: undefined,
   favoriteHeroesList: undefined,
   setFavoriteHeroesList: undefined,
+  heroe: { heroeCard: null, loadingHeroe: false },
   setHeroe: undefined,
 });
