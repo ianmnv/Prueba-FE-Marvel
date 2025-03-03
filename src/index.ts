@@ -1,4 +1,5 @@
 import type { Dispatch, SetStateAction } from "react";
+import type { Updater } from "use-immer";
 
 interface Collection {
   available: number;
@@ -34,6 +35,10 @@ export interface ContextData {
   setFavoriteHeroesList?: Dispatch<
     SetStateAction<MarvelHeroesAPI[] | undefined>
   >;
+  setHeroe?: Updater<{
+    heroeCard: MarvelHeroesAPI | null;
+    loadingHeroe: boolean;
+  }>;
 }
 
 export interface CacheData {

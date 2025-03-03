@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
 import "./App.css";
+import { useEffect, useState } from "react";
+import { useImmer } from "use-immer";
 import { useMarvelData } from "./hooks/useFetchedData";
 import { StateContext } from "./StateContext";
-import HeroesList from "./components/HeroesList";
-import SearchBar from "./components/SearchBar";
 import Header from "./components/Header";
-import type { ContextData } from "./index";
+import SearchBar from "./components/SearchBar";
+import HeroesList from "./components/HeroesList";
+import HeroeCard from "./components/HeroeCard";
+import type { ContextData, MarvelHeroesAPI } from "./index";
 
 function App() {
   const { heroesList, error, loading }: ContextData = useMarvelData();
@@ -15,13 +17,20 @@ function App() {
   const [filteredHeroes, setFilteredHeroes] =
     useState<typeof heroesList>(undefined);
   const [animate, setAnimate] = useState<boolean>(false);
+  const [heroe, setHeroe] = useImmer<{
+    heroeCard: MarvelHeroesAPI | null;
+    loadingHeroe: boolean;
+  }>({
+    heroeCard: null,
+    loadingHeroe: false,
+  });
 
   useEffect(() => {
     setFilteredHeroes(heroesList);
     setAnimate(true);
   }, [heroesList]);
 
-  if (loading) {
+  if (loading || heroe.loadingHeroe) {
     return (
       <div style={{ position: "relative" }}>
         <Header />
@@ -40,13 +49,14 @@ function App() {
         setFilteredHeroes,
         favoriteHeroesList,
         setFavoriteHeroesList,
+        setHeroe,
       }}
     >
       <Header />
 
       <main>
         <SearchBar />
-        <HeroesList />
+        {heroe.heroeCard !== null ? <HeroeCard /> : <HeroesList />}
       </main>
     </StateContext.Provider>
   );

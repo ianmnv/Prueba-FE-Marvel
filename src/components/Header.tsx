@@ -4,12 +4,15 @@ import { useContext } from "react";
 import { StateContext } from "../StateContext";
 
 export default function Header() {
-  const { favoriteHeroesList, heroesList, setFilteredHeroes } =
+  const { favoriteHeroesList, heroesList, setFilteredHeroes, setHeroe } =
     useContext(StateContext);
 
   function handleHeroesList(listOfHeroes: typeof heroesList) {
-    if (favoriteHeroesList && setFilteredHeroes) {
+    if (favoriteHeroesList && setFilteredHeroes && setHeroe) {
       setFilteredHeroes(listOfHeroes);
+      setHeroe((draft) => {
+        draft.heroeCard = null;
+      });
     }
   }
 

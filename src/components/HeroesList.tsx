@@ -6,9 +6,29 @@ import { StateContext } from "../StateContext";
 import type { MarvelHeroesAPI } from "../index";
 
 export default function HeroesList() {
-  const { error, filteredHeroes, favoriteHeroesList, setFavoriteHeroesList } =
-    useContext(StateContext);
+  const {
+    error,
+    filteredHeroes,
+    favoriteHeroesList,
+    setFavoriteHeroesList,
+    setHeroe,
+  } = useContext(StateContext);
   const [hoveredHeroId, setHoveredHeroId] = useState<number | null>(null);
+
+  function handleHeroe(heroe: MarvelHeroesAPI) {
+    if (setHeroe) {
+      setHeroe((draft) => {
+        draft.loadingHeroe = true;
+      });
+
+      setTimeout(() => {
+        setHeroe((draft) => {
+          draft.loadingHeroe = false;
+          draft.heroeCard = heroe;
+        });
+      }, 2500);
+    }
+  }
 
   if (error) {
     return <h1>There was a problem fetching data. {error}</h1>;
@@ -24,6 +44,7 @@ export default function HeroesList() {
             data-testid={`heroes-card${heroe.id}`}
             onMouseEnter={() => setHoveredHeroId(heroe.id)}
             onMouseLeave={() => setHoveredHeroId(null)}
+            onClick={() => handleHeroe(heroe)}
           >
             <img
               src={`${heroe.thumbnail.path}/portrait_fantastic.${heroe.thumbnail.extension}`}

@@ -63,6 +63,8 @@ main {
   height: 24.5rem;
   flex-direction: column;
   align-items: stretch;
+  text-align: unset;
+  cursor: pointer;
 }
 
 .heroes-img {
