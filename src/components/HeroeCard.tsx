@@ -22,7 +22,7 @@ export default function HeroeCard() {
           className="heroe-card-img"
         />
 
-        <div className="heroe-card-info">
+        <div className="heroe-card-info display-flex">
           <div className="heroe-card-title-container display-flex">
             <h1 className="heroe-card-title">
               {heroeCard?.name.toUpperCase()}
@@ -39,9 +39,9 @@ export default function HeroeCard() {
               ? heroeCard?.description
               : "Without description."}
           </p>
-
-          <div className="cut-square"></div>
         </div>
+
+        <div className="cut-square"></div>
       </div>
 
       <ComicList heroeCard={heroeCard} />

@@ -163,12 +163,10 @@ header {
 
 /* HeroeCarsd.tsx styles */
 
-.heroe-card-container {
-  position: static;
-}
-
 .heroe-card-resume {
   flex-direction: column;
+  background-color: var(--secondary-color);
+  position: relative;
 }
 
 .heroe-card-img {
@@ -177,10 +175,10 @@ header {
 }
 
 .heroe-card-info {
-  background-color: var(--secondary-color);
   width: 100%;
   padding: 2.4rem 1.6rem 4.8rem 1.6rem;
-  position: relative;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 .heroe-card-title-container {
@@ -261,18 +259,63 @@ header {
 }
 
 @media (min-width: 768px) {
+  header {
+    border-bottom: 1px #333333 solid;
+  }
+
   #search-section {
     padding: 1.2rem 4.8rem;
+  }
+
+  .heroe-card-resume {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .heroe-card-img {
+    width: 27.8rem;
+    height: 27.8rem;
+  }
+
+  .heroe-card-info {
+    padding: 4.8rem;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroes-card {
+    width: 18.8rem;
+  }
+
+  .heroe-card-resume {
+    padding: 0 4.8rem;
+    justify-content: center;
+  }
+
+  .heroe-card-info {
+    width: 64rem;
+    padding: 4.8rem 0 4.8rem 4.8rem;
+  }
+
+  .heroe-card-title {
+    font-size: var(--title-1-laptop);
+  }
+
+  .comics-container {
+    padding: 4.8rem;
+    width: 96rem;
+    margin: auto;
+  }
+
+  .comics-title {
+    font-size: var(--title-2-laptop);
   }
 }
 
 @media (min-width: 1512px) {
   #heroes-container {
     grid-template-columns: repeat(7, 1fr);
-  }
-
-  .heroes-card {
-    width: 18.8rem;
   }
 }
 
