@@ -15,10 +15,19 @@ export const mockData: { data: { data: { results: MarvelHeroesAPI[] } } } = {
             extension: "jpg",
           },
           comics: {
-            available: 1,
-            collectionURI: "http://example.com",
-            items: [],
-            returned: 1,
+            available: 2,
+            collectionURI: "http://example.com/comics",
+            returned: 2,
+            items: [
+              {
+                name: "Iron Man Comic #1",
+                resourceURI: "http://example.com/comics/1",
+              },
+              {
+                name: "Avengers featuring Iron Man",
+                resourceURI: "http://example.com/comics/2",
+              },
+            ],
           },
           series: {
             available: 1,

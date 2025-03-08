@@ -59,7 +59,7 @@ describe("<HeroesList/>", () => {
       expect(heroesImg).toBeInTheDocument();
       expect(heroesImg).toHaveAttribute(
         "src",
-        `${heroe.thumbnail.path}/portrait_fantastic.${heroe.thumbnail.extension}`
+        `${heroe.thumbnail.path}/detail.${heroe.thumbnail.extension}`
       );
     });
   });

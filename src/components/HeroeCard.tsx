@@ -14,25 +14,37 @@ export default function HeroeCard() {
   }
 
   return (
-    <section>
-      <div>
+    <section className="heroe-card-container">
+      <div className="heroe-card-resume display-flex">
         <img
-          src={`${heroeCard?.thumbnail.path}/standard_fantastic.${heroeCard?.thumbnail.extension}`}
+          src={`${heroeCard?.thumbnail.path}/detail.${heroeCard?.thumbnail.extension}`}
           alt={`${heroeCard?.name}'s image`}
+          className="heroe-card-img"
         />
 
-        <div>
-          <h1>{heroeCard?.name}</h1>
-          <img src={FavIconOutline} alt="add heroe to favorites" />
+        <div className="heroe-card-info">
+          <div className="heroe-card-title-container display-flex">
+            <h1 className="heroe-card-title">
+              {heroeCard?.name.toUpperCase()}
+            </h1>
+            <img
+              src={FavIconOutline}
+              alt="add heroe to favorites"
+              className="heroe-card-icon"
+            />
+          </div>
+
+          <p className="heroe-card-description">
+            {heroeCard?.description
+              ? heroeCard?.description
+              : "Without description."}
+          </p>
+
+          <div className="cut-square"></div>
         </div>
-
-        <p>{heroeCard?.description}</p>
       </div>
 
-      <div>
-        <h2>COMICS</h2>
-        <ComicList heroeCard={heroeCard} />
-      </div>
+      <ComicList heroeCard={heroeCard} />
     </section>
   );
 }

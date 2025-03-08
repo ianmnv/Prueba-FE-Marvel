@@ -1,12 +1,24 @@
+/* General styling */
+
 .display-flex {
   display: flex;
   align-items: center;
 }
 
-.fav-heroes-ico {
-  width: 2.4rem;
+.cut-square {
   height: 2.4rem;
+  width: 2.4rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+    315deg,
+    var(--primary-color) 50%,
+    transparent 50%
+  );
 }
+
+/* Header styles */
 
 header {
   justify-content: space-between;
@@ -32,6 +44,11 @@ header {
   padding: 0.8rem;
   background-color: transparent;
   cursor: pointer;
+}
+
+.fav-heroes-ico {
+  width: 2.4rem;
+  height: 2.4rem;
 }
 
 #numb-of-fav-heroes {
@@ -70,6 +87,7 @@ header {
   justify-content: space-between;
   padding: 1.6rem;
   padding-bottom: 2.4rem;
+  width: 100%;
   position: relative;
 }
 
@@ -141,6 +159,97 @@ header {
 
 #search-p {
   font-size: var(--S-text);
+}
+
+/* HeroeCarsd.tsx styles */
+
+.heroe-card-container {
+  position: static;
+}
+
+.heroe-card-resume {
+  flex-direction: column;
+}
+
+.heroe-card-img {
+  width: 100%;
+  height: 39.8rem;
+}
+
+.heroe-card-info {
+  background-color: var(--secondary-color);
+  width: 100%;
+  padding: 2.4rem 1.6rem 4.8rem 1.6rem;
+  position: relative;
+}
+
+.heroe-card-title-container {
+  justify-content: space-between;
+}
+
+.heroe-card-title {
+  font-size: var(--title-1-mobile);
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.heroe-card-icon {
+  width: 2.4rem;
+  height: 2.1rem;
+}
+
+.heroe-card-description {
+  font-size: var(--L-text);
+  font-weight: 400;
+  color: var(--primary-color);
+  margin-top: 2.4rem;
+}
+
+/* ComicList.tsx styles */
+
+.comics-container {
+  padding: 4.8rem 1.6rem;
+  flex-direction: column;
+  align-items: baseline;
+  gap: 2.4rem;
+}
+
+.comics-title {
+  font-size: var(--title-2-mobile);
+  font-weight: 700;
+}
+
+.comics-list {
+  gap: 1.6rem;
+  overflow-x: auto;
+}
+
+.comic-item {
+  flex-direction: column;
+  align-items: baseline;
+  gap: 1.2rem;
+}
+
+.comic-img {
+  width: 16.4rem;
+  height: 24.6rem;
+}
+
+.comic-info {
+  flex-direction: column;
+  align-items: baseline;
+  gap: 0.8rem;
+  height: 6rem;
+}
+
+.comic-title {
+  font-size: var(--L-text);
+  font-weight: 500;
+}
+
+.comic-year {
+  font-size: var(--S-text);
+  font-weight: 400;
 }
 
 /* Media queries */

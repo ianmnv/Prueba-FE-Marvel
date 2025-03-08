@@ -42,14 +42,14 @@ describe("<HeroeCard />", () => {
     const heroData = mockData.data.data.results[0];
     renderHeroeCardWithContext(heroData);
 
-    const heroName = screen.getByRole("heading", { name: "Iron Man" });
+    const heroName = screen.getByRole("heading", { name: "IRON MAN" });
     expect(heroName).toBeInTheDocument();
 
     const heroImage = screen.getByAltText("Iron Man's image");
     expect(heroImage).toBeInTheDocument();
     expect(heroImage).toHaveAttribute(
       "src",
-      `${heroData.thumbnail.path}/standard_fantastic.${heroData.thumbnail.extension}`
+      `${heroData.thumbnail.path}/detail.${heroData.thumbnail.extension}`
     );
 
     const heroDescription = screen.getByText("Genius billionaire");
@@ -61,13 +61,5 @@ describe("<HeroeCard />", () => {
     const comicList = screen.getByTestId("mock-comic-list");
     expect(comicList).toBeInTheDocument();
     expect(comicList).toHaveTextContent("Mock ComicList: Iron Man");
-  });
-
-  it("renders the COMICS heading", () => {
-    const heroData = mockData.data.data.results[0];
-    renderHeroeCardWithContext(heroData);
-
-    const comicsHeading = screen.getByRole("heading", { name: "COMICS" });
-    expect(comicsHeading).toBeInTheDocument();
   });
 });

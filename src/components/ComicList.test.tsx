@@ -17,24 +17,7 @@ vi.mock("import.meta", () => ({
   },
 }));
 
-const heroWithComics: MarvelHeroesAPI = {
-  ...mockData.data.data.results[0],
-  comics: {
-    available: 2,
-    collectionURI: "http://example.com/comics",
-    returned: 2,
-    items: [
-      {
-        name: "Iron Man Comic #1",
-        resourceURI: "http://example.com/comics/1",
-      },
-      {
-        name: "Avengers featuring Iron Man",
-        resourceURI: "http://example.com/comics/2",
-      },
-    ],
-  },
-};
+const heroWithComics: MarvelHeroesAPI = mockData.data.data.results[0];
 
 const mockComicResponse = {
   data: {
@@ -65,9 +48,10 @@ describe("<ComicList />", () => {
 
     await waitFor(() => {
       expect(screen.getByText("Iron Man Comic #1")).toBeInTheDocument();
+      expect(
+        screen.getByText("Avengers featuring Iron Man")
+      ).toBeInTheDocument();
     });
-
-    expect(screen.getByText("Avengers featuring Iron Man")).toBeInTheDocument();
   });
 
   it("displays loading state initially", async () => {
@@ -123,9 +107,8 @@ describe("<ComicList />", () => {
   it("renders nothing when heroeCard is null", () => {
     const { container } = render(<ComicList heroeCard={null} />);
 
-    const comicsList = container.querySelector(".comics-list");
+    const comicsList = container.querySelector(".comic-item");
 
-    expect(comicsList).toBeInTheDocument();
-    expect(comicsList).toBeEmptyDOMElement();
+    expect(comicsList).not.toBeInTheDocument();
   });
 });

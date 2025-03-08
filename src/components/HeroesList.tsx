@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import FavIconOutlined from "../assets/favorite-ico-outlined.svg";
 import FavIconFilled from "../assets/favorite-ico-filled.svg";
-import CutIcon from "../assets/Cut.svg";
 import { StateContext } from "../StateContext";
 import type { MarvelHeroesAPI } from "../index";
 
@@ -47,7 +46,7 @@ export default function HeroesList() {
             onClick={() => handleHeroe(heroe)}
           >
             <img
-              src={`${heroe.thumbnail.path}/portrait_fantastic.${heroe.thumbnail.extension}`}
+              src={`${heroe.thumbnail.path}/detail.${heroe.thumbnail.extension}`}
               alt={`heroe image of ${heroe.name}`}
               className="heroes-img"
             />
@@ -77,7 +76,7 @@ export default function HeroesList() {
                     setFavoriteHeroesList([...favoriteHeroesList, heroe]);
                 }}
               />
-              <img src={CutIcon} alt="cut card icon" className="cut-ico" />
+              <div className="cut-square"></div>
             </div>
           </div>
         );

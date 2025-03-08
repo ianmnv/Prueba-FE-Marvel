@@ -92,23 +92,48 @@ export default function ComicList({
   }
 
   return (
-    <div className="comics-list">
-      {comicsList.map((comic, i) => (
-        <div key={i} className="comic-item">
-          {comic.loading && <div className="loading">Loading...</div>}
+    <div className="display-flex comics-container">
+      <h2 className="comics-title">COMICS</h2>
 
-          {comic.error && <div className="error">Failed to load image</div>}
+      <div style={{ width: "100%" }}>
+        <div className="comics-list display-flex">
+          {comicsList.map((comic, i) => {
+            const comicTitle =
+              comic.name.length > 35
+                ? `${comic.name.slice(0, 35)}...`
+                : comic.name;
 
-          {comic.image && (
-            <img
-              src={`${comic.image.path}/portrait_fantastic.${comic.image.extension}`}
-              alt={comic.name}
-            />
-          )}
+            const comicYear = comic.name.match(/\(([^)]+)\)/);
 
-          <h3>{comic.name}</h3>
+            return (
+              <div key={i} className="display-flex comic-item">
+                {comic.loading && <div className="loading">Loading...</div>}
+
+                {comic.error && (
+                  <div className="error">Failed to load image</div>
+                )}
+
+                {comic.image && (
+                  <img
+                    src={`${comic.image.path}/portrait_fantastic.${comic.image.extension}`}
+                    alt={comic.name}
+                    className="comic-img"
+                  />
+                )}
+
+                <div className="display-flex comic-info">
+                  <h3 className="comic-title">
+                    {comicTitle.replace(/\s*\([^)]*\)/, "")}
+                  </h3>
+                  <p className="comic-year">
+                    {comicYear ? comicYear[1] : "No year provided"}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
-      ))}
+      </div>
     </div>
   );
 }
