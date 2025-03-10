@@ -21,7 +21,7 @@ export default function HeroeCard() {
         const removedHeroe = favoriteHeroesList.filter(
           (heroe) => heroe != heroeCard
         );
-        setFavoriteHeroesList([...removedHeroe]);
+        setFavoriteHeroesList(removedHeroe);
         setFavoriteIconFilled(false);
       }
     }
