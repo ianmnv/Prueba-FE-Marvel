@@ -191,6 +191,11 @@ header {
   color: var(--primary-color);
 }
 
+.heroe-card-add-favorite-btn {
+  cursor: pointer;
+  background-color: transparent;
+}
+
 .heroe-card-icon {
   width: 2.4rem;
   height: 2.1rem;

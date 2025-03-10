@@ -8,7 +8,7 @@ export default function Header() {
     useContext(StateContext);
 
   function handleHeroesList(listOfHeroes: typeof heroesList) {
-    if (favoriteHeroesList && setFilteredHeroes && setHeroe) {
+    if (setFilteredHeroes && setHeroe) {
       setFilteredHeroes(listOfHeroes);
       setHeroe((draft) => {
         draft.heroeCard = null;

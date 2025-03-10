@@ -1,8 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import HeroeCard from "./HeroeCard";
+import Header from "./Header";
 import { StateContext } from "../StateContext";
 import { mockData } from "../mocked/mockData";
 import type { ContextData, MarvelHeroesAPI } from "../index";
+import userEvent from "@testing-library/user-event";
 
 vi.mock("./ComicList", () => ({
   default: ({ heroeCard }: { heroeCard: MarvelHeroesAPI }) => (
@@ -17,10 +19,12 @@ function renderHeroeCardWithContext(
   const contextValue: ContextData = {
     loading,
     heroe: { heroeCard: heroeData, loadingHeroe: loading },
+    favoriteHeroesList: heroeData ? [heroeData] : undefined,
   };
 
   return render(
     <StateContext.Provider value={contextValue}>
+      <Header />
       <HeroeCard />
     </StateContext.Provider>
   );
@@ -61,5 +65,21 @@ describe("<HeroeCard />", () => {
     const comicList = screen.getByTestId("mock-comic-list");
     expect(comicList).toBeInTheDocument();
     expect(comicList).toHaveTextContent("Mock ComicList: Iron Man");
+  });
+
+  it("add favorite heroe to favorite list", async () => {
+    const heroData = mockData.data.data.results[0];
+    renderHeroeCardWithContext(heroData);
+
+    const favoriteBtnHeroeCard = screen.getByRole("button", {
+      name: /add heroe to favorites/i,
+    });
+    const favoriteBtnHeader = screen.getByRole("button", {
+      name: /favorite icon/i,
+    });
+
+    await userEvent.click(favoriteBtnHeroeCard);
+
+    expect(favoriteBtnHeader).toHaveTextContent("1");
   });
 });
